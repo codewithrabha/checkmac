@@ -1,0 +1,19 @@
+{
+  "cpu": {
+    "intel": {
+      "supported_generations": ["6th", "7th", "8th", "9th", "10th"],
+      "supported_patterns": ["Core i3", "Core i5", "Core i7", "Core i9"],
+      "blocked_keywords": ["Celeron", "Pentium", "Atom"],
+      "warning_keywords": ["F"]
+    },
+    "amd": {
+      "supported_patterns": ["Ryzen"],
+      "blocked_keywords": ["FX", "Bulldozer", "Piledriver"]
+    }
+  },
+  "gpu": {
+    "unsupported": ["NVIDIA", "GeForce"],
+    "supported": ["Intel UHD", "Intel HD", "Intel Iris", "Radeon RX", "Radeon Pro"],
+    "warning": ["Radeon Vega"]
+  }
+}

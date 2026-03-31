@@ -1,0 +1,46 @@
+{
+  "name": "checkmac",
+  "version": "0.0.1",
+  "description": "Check if your system can run macOS with OpenCore",
+  "main": "src/main/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "electron": "electron .",
+    "electron:dev": "set NODE_ENV=development && electron .",
+    "start": "npm run build && electron .",
+    "dist": "npm run build && electron-builder"
+  },
+  "keywords": ["macOS", "hackintosh", "opencore", "compatibility"],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "electron": "^41.1.0",
+    "electron-builder": "^26.8.1",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.3"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "build": {
+    "appId": "com.checkmac.app",
+    "productName": "checkmac",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/main/**/*",
+      "src/shared/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    }
+  }
+}
