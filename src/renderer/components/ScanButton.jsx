@@ -5,7 +5,8 @@ function ScanButton({ onClick, scanning, label = 'Start scan' }) {
     <button
       onClick={onClick}
       disabled={scanning}
-      className="px-6 py-2.5 bg-[#0078d4] hover:bg-[#106ebe] active:bg-[#005a9e] text-white text-sm font-medium rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+      cursor-pointer
+      className="px-6 py-2.5 bg-[#0078d4] hover:bg-[#106ebe] active:bg-[#005a9e] text-white text-sm font-medium rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
     >
       {!scanning && (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

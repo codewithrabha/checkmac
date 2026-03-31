@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HardwareCard from "./components/HardwareCard";
 import VerdictCard from "./components/VerdictCard";
 import Header from "./components/Header";
 import ScanButton from "./components/ScanButton";
 import packageInfo from "../../package.json";
+import avatarImg from "./assets/avatar.jpg";
 
 function App() {
   const [scanning, setScanning] = useState(false);
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
+  const [showCredits, setShowCredits] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCredits(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleScan = async () => {
     setScanning(true);
@@ -55,9 +64,9 @@ function App() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold mb-2">Ready to scan</h2>
+            <h2 className="text-xl font-semibold mb-2">Ready to Scan?</h2>
             <p className="text-[#888] text-sm mb-8 text-center max-w-md">
-              Analyze your hardware to check compatibility with macOS and
+              Check your system's hardware compatibility with macOS and
               OpenCore bootloader.
             </p>
             <ScanButton onClick={handleScan} scanning={scanning} />
@@ -172,17 +181,59 @@ function App() {
 
       {/* Footer */}
       <footer className="px-6 py-4 border-t border-[#2d2d2d] flex items-center justify-between text-xs text-[#666]">
-        <span>CheckMac v{packageInfo.version}
-        <a className="text-[#0078d4] hover:text-[#0078d4]/80 transition-colors" href="https://github.com/codewithrabha/checkmac" target="_blank">{} On GitHub</a>
+        <span className="flex items-center gap-2">
+          <span>CheckMac v{packageInfo.version}</span>
+          <a className="text-[#0078d4] hover:text-[#0078d4]/80 transition-colors" href="https://github.com/codewithrabha/checkmac" target="_blank" rel="noreferrer">On GitHub</a>
+          <span>•</span>
+          <button onClick={() => setShowCredits(true)} className="text-[#0078d4] hover:text-[#0078d4]/80 transition-colors cursor-pointer focus:outline-none">Credits</button>
         </span>
 
         <span>
-          <a className="text-[#0078d4] hover:text-[#0078d4]/80 transition-colors" href="https://dortania.github.io/OpenCore-Install-Guide/" target="_blank">
-            OpenCore {}
+          <a className="text-[#0078d4] hover:text-[#0078d4]/80 transition-colors" href="https://dortania.github.io/OpenCore-Install-Guide/" target="_blank" rel="noreferrer">
+            OpenCore
           </a>
-          Compatibility Checker
+          {' '}Compatibility Checker
         </span>
       </footer>
+
+      {/* Credits Dialog */}
+      {showCredits && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-[#1a1a1a] border border-[#3d3d3d] rounded-xl p-6 max-w-sm w-full shadow-2xl relative">
+            <button 
+              onClick={() => setShowCredits(false)}
+              className="absolute top-4 right-4 text-[#888] hover:text-[#e4e4e4] transition-colors focus:outline-none"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center text-center mt-2">
+              <img src={avatarImg} alt="Abhijit Rabha" className="w-24 h-24 rounded-full border-2 border-[#0078d4] mb-4 object-cover" />
+              <h3 className="text-xl font-bold mb-1">Abhijit Rabha</h3>
+              <p className="text-[#888] text-sm mb-5">Creator & Developer</p>
+              
+              <div className="bg-[#2d2d2d] rounded-lg p-4 mb-6 border border-[#3d3d3d]">
+                <p className="text-sm text-[#e4e4e4] leading-relaxed">
+                  Thank you for using CheckMac! If you find this tool helpful in your Hackintosh journey, please consider giving it a star on GitHub.
+                </p>
+              </div>
+              
+              <a 
+                href="https://github.com/codewithrabha/checkmac" 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#0078d4] hover:bg-[#0078d4]/90 rounded-lg transition-colors font-medium text-sm text-white"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                </svg>
+                Star on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
