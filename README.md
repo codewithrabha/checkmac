@@ -10,7 +10,7 @@ If you simply want to check your hardware, you don't need to touch any code! Jus
 
 ### 1. Download
 1. Visit the [Releases page on GitHub](https://github.com/codewithrabha/checkmac/releases).
-2. Download the latest `.exe` setup file for Windows.
+2. Download the latest [`.exe`](https://github.com/codewithrabha/checkmac/releases/download/Production/Checkmac.Setup.v0.0.1.exe) setup file for Windows.
 3. Run the installer and open CheckMac.
 
 ### 2. User Manual
