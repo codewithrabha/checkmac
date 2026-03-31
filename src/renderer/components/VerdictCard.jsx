@@ -65,7 +65,7 @@ function VerdictCard({ results }) {
   return (
     <div className={`${config.bgColor} border ${config.borderColor} rounded-lg p-5`}>
       <div className="flex items-start gap-4">
-        <div className={`w-10 h-10 rounded-full ${config.iconBg} flex items-center justify-center flex-shrink-0`}>
+        <div className={`w-10 h-10 rounded-full ${config.iconBg} flex items-center justify-center shrink-0`}>
           {config.icon}
         </div>
         <div className="flex-1 min-w-0">

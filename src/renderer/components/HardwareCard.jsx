@@ -21,7 +21,7 @@ const icons = {
 function HardwareCard({ label, value, icon, border }) {
   return (
     <div className={`px-4 py-3 flex items-center gap-4 ${border ? 'border-t border-[#3d3d3d]' : ''}`}>
-      <div className="w-9 h-9 rounded-lg bg-[#404040] flex items-center justify-center text-[#888] flex-shrink-0">
+      <div className="w-9 h-9 rounded-lg bg-[#404040] flex items-center justify-center text-[#888] shrink-0">
         {icons[icon]}
       </div>
       <div className="min-w-0 flex-1">
